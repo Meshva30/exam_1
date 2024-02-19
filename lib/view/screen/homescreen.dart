@@ -1,312 +1,301 @@
+import 'package:exam/view/screen/filterScreen.dart';
 import 'package:flutter/material.dart';
 
-class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+import '../../utils/productList.dart';
+import 'cartscreen.dart';
+
+class homescreen extends StatefulWidget {
+  const homescreen({super.key});
 
   @override
-  State<Homescreen> createState() => _HomescreenState();
+  State<homescreen> createState() => _homescreenState();
 }
 
-class _HomescreenState extends State<Homescreen> {
+class _homescreenState extends State<homescreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: Image.asset(
-            "assets/icon.png",
+          leading: Row(
+            children: [
+              Image.asset(
+                'assets/icon.png',
+                fit: BoxFit.cover,
+                width: 20,
+              ),
+              Text(
+                'SC.',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
+          centerTitle: true,
           title: Row(
             children: [
-              Text("SC.",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.black)),
               SizedBox(
-                width: 280,
+                width: 500,
               ),
-              Text("New arrivals",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FilterScreen(),
+                  ));
+                },
+                child: Text(
+                  'New arrivals',
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
               SizedBox(
                 width: 20,
               ),
-              Text("Men",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+              Text(
+                'Men',
+                style: TextStyle(fontSize: 15),
+              ),
               SizedBox(
                 width: 20,
               ),
-              Text("Women",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+              Text(
+                'Women',
+                style: TextStyle(fontSize: 15),
+              ),
               SizedBox(
                 width: 20,
               ),
-              Text("Kids",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-              SizedBox(
-                width: 20,
+              Text(
+                'kids',
+                style: TextStyle(fontSize: 15),
               ),
             ],
           ),
           actions: [
-            Icon(Icons.shopping_cart_outlined),
+            InkWell(onTap: () {
+              totalAmt = getTotal();
+              setState(() {
+                Navigator.pushNamed(context, '/cart');
+              });
+
+            },child: Icon(Icons.shopping_cart_outlined)),
             SizedBox(
-              width: 10,
+              width: 20,
             ),
-            Icon(Icons.favorite_border),
+            Icon(Icons.favorite_outline),
             SizedBox(
-              width: 10,
+              width: 20,
             ),
-            Icon(Icons.person_outline_sharp),
+            Icon(Icons.person_outline),
             SizedBox(
-              width: 10,
+              width: 20,
             ),
           ],
         ),
         body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              Container(
-                height: 450,
-                width: 1490,
-                decoration: BoxDecoration(color: Colors.grey.shade300),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 150.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                            child: Text(
-                          "Puma",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 40),
-                        )),
-                        SizedBox(
-                          height: 10,
+                        Text(
+                          'Puma',
+                          style: TextStyle(fontSize: 80),
                         ),
                         Text(
-                          "Running SX",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 40),
-                        ),
-                        Text(
-                          "                                              The shoe that moved mountains for eternity and skill does so",
-                          style: TextStyle(color: Colors.black, fontSize: 20),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "with a swift touch of modernism",
-                          style: TextStyle(color: Colors.black, fontSize: 20),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "62,000RWF",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          height: 40,
-                          width: 80,
-                          decoration: BoxDecoration(color: Colors.red),
-                          child: Text("Add to Cart",
-                              style: TextStyle(color: Colors.white)),
+                          'Running SX',
+                          style: TextStyle(fontSize: 80),
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 50),
-                          child: Row(
-                            children: [
-
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration:
-                                    BoxDecoration(color: Colors.white54),
-                                child: Image.asset("assets/b2.png"),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration:
-                                    BoxDecoration(color: Colors.white54),
-                                child: Image.asset("assets/b3.png"),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration:
-                                    BoxDecoration(color: Colors.white54),
-                                child: Image.asset("assets/b4.png"),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration:
-                                    BoxDecoration(color: Colors.white54),
-                                child: Image.asset("assets/b5.png"),
-                              ),
-                            ],
+                        Text(
+                            'The shoes that moved mountains for eternity and still does  so\n with a swift touch of modernism'),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          '62,000 RWF',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Container(
+                          height: 50,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
                           ),
+                          child: Center(
+                              child: Text(
+                            'Add to cart',
+                            style: TextStyle(fontSize: 15, color: Colors.white),
+                          )),
                         )
                       ],
                     ),
-                    SizedBox(
-                      height: 80,
-                    ),
-                    Image.asset("assets/b1.png"),
-                    SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text("All the new arrivals",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25)),
-              Padding(
-                padding: const EdgeInsets.only(left: 200),
-                child: Row(
-                  children: [
-
-                    Column(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 300.0),
+                    child: Column(
                       children: [
                         Container(
-                          height: 200,
-                          width: 200,
-                          decoration: BoxDecoration(color: Colors.grey.shade300),
-                          child: Image.asset("assets/adiddas.png"),
-                        ),
-                        Text("Addiddas Beluga",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                        Text("35,000RWF", style: TextStyle(color: Colors.grey)),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              height: 200,
-                              width: 200,
-                              decoration: BoxDecoration(color: Colors.grey.shade300),
-                              child: Image.asset("assets/nike.png"),
-                            ),
-                            Text("nike Zoom",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                            Text("35,000RWF", style: TextStyle(color: Colors.grey)),
-                          ],
+                          height: 400,
+                          width: 400,
+                          decoration: BoxDecoration(
+                            // shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: Image.asset('assets/b1.png'),
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 50,
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  width: 200,
-                                  decoration: BoxDecoration(color: Colors.grey.shade300),
-                                  child: Image.asset("assets/puma.png"),
-                                ),
-                                Text("Nike Air Jordan XT",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold)),
-                                Text("35,000RWF", style: TextStyle(color: Colors.grey)),
-                              ],
+                            Container(
+                              height: 70,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: Image.asset('assets/b2.png',
+                                  fit: BoxFit.cover),
                             ),
                             SizedBox(
                               width: 20,
                             ),
-                            Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      height: 200,
-                                      width: 200,
-                                      decoration: BoxDecoration(color: Colors.grey.shade300),
-                                      child: Image.asset("assets/nike2.png"),
-                                    ),
-                                    Text("Nike Wobler",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold)),
-                                    Text("35,000RWF", style: TextStyle(color: Colors.grey)),
-                                  ],
-                                ),
-                              ],
-                            )
+                            Container(
+                              height: 70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: Image.asset('assets/b3.png',
+                                  fit: BoxFit.cover),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              height: 70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: Image.asset('assets/b4.png',
+                                  fit: BoxFit.cover),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              height: 70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: Image.asset('assets/b5.png',
+                                  fit: BoxFit.cover),
+                            ),
                           ],
                         )
                       ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 1100.0),
+                child: Text(
+                  'All the new arrivals',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Row(
+                  children: List.generate(
+                      l1.length,
+                      (index) => product(l1[index]['img'], l1[index]['name'],
+                          l1[index]['prize']))),
+              Padding(
+                padding: const EdgeInsets.only(right: 100.0, top: 35),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'View all new arrivals',
+                      style: TextStyle(fontSize: 15, color: Colors.black),
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                      color: Colors.grey,
+                      size: 20,
                     )
-
                   ],
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 50,
               ),
-              Text("Good snerkers",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30)),
-              Text("take you good Places",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold)),
-              Text("look no further, this is where you find the best pair!",style: TextStyle(fontSize: 10)),
-              SizedBox(height: 50,),
-              Padding(
-                padding: const EdgeInsets.only(left: 200),
-                child: Container(
-                  height: 200,
-                  width: 1000,
-                 // decoration: BoxDecoration(color: Colors.grey),
-                     child: Image.asset("assets/im1.png"),
-
-                ),
+              Image.asset('assets/icon2.png'),
+              SizedBox(
+                height: 50,
               ),
-              Container(
-                height: 200,
-                width: 1000,
-                child: Image.asset("assets/img2.png"),
+              Image.asset('assets/im1.png'),
+              SizedBox(
+                height: 50,
               ),
+              Image.asset("assets/img2.png")
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Widget product(String? img, String? name, int? prize) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        margin: EdgeInsets.only(left: 60, top: 50),
+        height: 300,
+        width: 300,
+        decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            border: Border.all(color: Colors.grey)),
+        child: Image.asset(
+          img!,
+          fit: BoxFit.cover,
+        ),
+      ),
+      SizedBox(
+        height: 5,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 60.0),
+        child: Text(
+          name!,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 60.0),
+        child: Text(
+          '$prize RWF',
+          style: TextStyle(color: Colors.grey, fontSize: 18),
+        ),
+      ),
+    ],
+  );
 }
